@@ -23,6 +23,8 @@ $posts = $pt->all();
 </head>
 <body>
     <div class="container">
+        <a href="inscrire.php" class="btn btn-primary"> S'inscrire </a>
+        <a href="connexion.php" class="btn btn-primary"> Connexion </a>
         <h1 class="text-center">Blog</h1>
         <div class="row">
             <?php foreach($posts as $post): ?>
