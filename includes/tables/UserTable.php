@@ -24,10 +24,14 @@ class UserTable
         return $sth->fetchAll();
     }
 
-    public function password(): array
+    public function user_exist(user $user)
     {
-        $sth = $this->db->query("SELECT user_mdp FROM {$this->table}");
-        return $sth->fetchAll();
+        $sth = $this->db->prepare("SELECT EXISTS(SELECT * FROM {$this->table} WHERE user_namee = ? AND user_mdp = ?) ");
+        $name=$user->getName();
+        $password=$user->getPassword();
+        $result = $sth->execute(array($name,$password));
+        $res = $sth->fetch();
+        return $res[0];
     }
 
     public function create_user(user $user): void

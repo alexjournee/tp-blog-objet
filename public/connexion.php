@@ -5,16 +5,14 @@ $nom = false;
 $mdp = false;
 
 $ut = new UserTable();
+$u = new User();
 
 if (isset($_POST['name']) && isset($_POST['password'])) {
-    if($_POST['name'] == $ut->name()){
-        $nom = true;
-    }
-    if($_POST['password'] == $ut->password()){
-        $mdp = true;
-    }
-    if($nom==true && $mdp==true){
-        header("location: index.php");
+    $u->setName($_POST['name']);
+    $u->setPassword($_POST['password']);  
+    if ( $ut->user_exist($u)==1) {
+    $_SESSION['name']=$u->getName();
+    header("location: index.php");
     }
     else{
         echo "Erreur lors de la connexion";

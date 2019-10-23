@@ -12,7 +12,7 @@ if (isset($_POST['title']) && isset($_POST['content'])) {
 }
 
 $posts = $pt->all();
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +26,7 @@ $posts = $pt->all();
         <a href="inscrire.php" class="btn btn-primary"> S'inscrire </a>
         <a href="connexion.php" class="btn btn-primary"> Connexion </a>
         <h1 class="text-center">Blog</h1>
+        <p class="text-right">Connecté en tant que : </p>
         <div class="row">
             <?php foreach($posts as $post): ?>
                 <div class="col-md-4">
